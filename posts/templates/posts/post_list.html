@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+        <!-- Page content-->
+        {% block content %}
+            <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+
+                </div>
+            </div>
+            </header>
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="{{ a.image.url }}" alt="..." width=850 height=350/></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{ a.created }}</div>
+                            <h2 class="card-title">{{ a.title }}</h2>
+                            <p class="card-text"> {{ a }}</p>
+                            <a class="btn btn-primary" href="{{ a.get_absolute_url }}">Read more →</a>
+                        </div>
+                    </div>
+                    <!-- Nested row for non-featured blog posts-->
+                    <div class="row">
+                        {% for object in object_list %}
+                            <div class="col-lg-6">
+                                     <div class="card mb-4">
+                                        <a href="#!"><img class="card-img-top" src="{{ object.image.url }}" alt="..." width=700 height=350/></a>
+                                        <div class="card-body">
+                                            <div class="small text-muted">{{ object.created}}</div>
+                                            <h2 class="card-title h4">{{ object.title }}</h2>
+                                            <p class="card-text">{{ object }}</p>
+                                            <a class="btn btn-primary" href="{{ object.get_absolute_url }}">Read more →</a>
+                                        </div>
+                                     </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+{#                    <!-- Pagination-->#}
+{#                    <nav aria-label="Pagination">#}
+{#                        <hr class="my-0" />#}
+{#                        <ul class="pagination justify-content-center my-4">#}
+{#                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>#}
+{#                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>#}
+{#                            {% if object_list|length > 4 %}#}
+{#                                <li class="page-item"><a class="page-link" href="#!">2</a></li>#}
+{#                            {% endif %}#}
+{#                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>#}
+{#                        </ul>#}
+{#                    </nav>#}
+                </div>
+        {% endblock %}
